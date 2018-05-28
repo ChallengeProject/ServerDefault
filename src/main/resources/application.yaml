@@ -1,0 +1,15 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://winner.cojrremesbsl.us-east-2.rds.amazonaws.com:3306/test?autoReconnect=true&useSSL=false
+    username: winner
+    password: lineplus!
+    hikari:
+      auto-commit: true
+      pool-name: hackathon
+      register-mbeans: true
+      minimum-idle: 5
+      maximum-pool-size: 5
+      connection-test-query: select 1
+      connection-timeout: 3200
+      validation-timeout: 3200
