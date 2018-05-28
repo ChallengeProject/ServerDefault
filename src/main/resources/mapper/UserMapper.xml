@@ -11,7 +11,7 @@
         ,	user.deleted_time
       </sql>
 
-  <select id="selectUserById" parameterType="map" resultType="me.hackathon.root.model.user.User">
+  <select id="selectUserById" parameterType="map" resultType="User">
     SELECT
     /* user.selectUserById */
        <include refid="UserColumns" />
