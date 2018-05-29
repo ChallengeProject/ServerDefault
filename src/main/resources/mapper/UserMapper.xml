@@ -21,6 +21,27 @@
         id = #{id}
   </select>
 
+  <select id="selectUserByEmail" parameterType="map" resultType="int">
+    SELECT
+    /* user.selectUserByEmail */
+      count(*)
+    FROM
+      user
+    WHERE
+      email = #{email}
+  </select>
+
+  <select id="login" resultType="User" parameterType="map">
+    SELECT
+    /* user.login */
+      <include refid="UserColumns" />
+    FROM
+      user
+    WHERE
+      email = #{email}
+      AND password = #{password}
+  </select>
+
   <insert id="insertUser" parameterType="map">
        INSERT INTO /* user.insertUser */
         user(id, email, password, status, created_time, updated_time)
@@ -41,7 +62,7 @@
       UPDATE /* user.deleteUserById */
         user
       SET
-        status = #{status}
+        status = 1
         , updated_time = NOW()
         , deleted_time = NOW()
       WHERE

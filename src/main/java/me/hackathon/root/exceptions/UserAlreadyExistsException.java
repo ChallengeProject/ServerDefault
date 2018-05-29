@@ -1,12 +1,10 @@
 package me.hackathon.root.exceptions;
 
-import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.ResponseStatus;
+import me.hackathon.root.model.supoort.ExceptionCode;
 
-@ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
-public class UserAlreadyExistsException extends Throwable {
+public class UserAlreadyExistsException extends AbstractRuntimeException {
 
     public UserAlreadyExistsException() {
-        super("이미 존재하는 이메일입니다.");
+        super(ExceptionCode.USER_ALREADY_EXISTS, ExceptionCode.USER_ALREADY_EXISTS.getMessage());
     }
 }

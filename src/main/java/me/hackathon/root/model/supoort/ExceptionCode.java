@@ -4,9 +4,16 @@ import org.springframework.http.HttpStatus;
 
 public enum ExceptionCode {
     SUCCESS(HttpStatus.OK),
+    // 400
     BAD_REQUEST(HttpStatus.BAD_REQUEST),
+
+    // 404
     NOT_FOUND(HttpStatus.NOT_FOUND),
+    NOT_FOUND_USER(HttpStatus.NOT_FOUND, "Not found user"),
+
+    // 500
     INTERNAL_SERVER_ERROR(HttpStatus.INTERNAL_SERVER_ERROR),
+    USER_ALREADY_EXISTS(HttpStatus.INTERNAL_SERVER_ERROR, "User Aleardy Exists");
     ;
 
     private final int code;

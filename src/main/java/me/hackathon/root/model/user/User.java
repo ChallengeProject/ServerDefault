@@ -10,5 +10,5 @@ public class User implements UserPrincipal{
     private Long createdTime;
     private Long updatedTime;
     private Long deletedTime;
-    private UserStatus userStatus = UserStatus.NORMAL;
+    private UserStatus status = UserStatus.NORMAL;
 }

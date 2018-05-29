@@ -13,3 +13,8 @@ spring:
       connection-test-query: select 1
       connection-timeout: 3200
       validation-timeout: 3200
+
+
+
+
+

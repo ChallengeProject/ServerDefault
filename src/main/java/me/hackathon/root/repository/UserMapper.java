@@ -3,6 +3,7 @@ package me.hackathon.root.repository;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
+import me.hackathon.root.model.request.UserLoginRequest;
 import me.hackathon.root.model.user.User;
 
 @Mapper
@@ -15,4 +16,8 @@ public interface UserMapper {
     int updateUserById(User user);
 
     int deleteUserById(@Param("id")long id);
+
+    int selectUserByEmail(@Param("email") String email);
+
+    User login(UserLoginRequest userLoginRequest);
 }
