@@ -1,9 +1,9 @@
 spring:
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://winner.cojrremesbsl.us-east-2.rds.amazonaws.com:3306/test?autoReconnect=true&useSSL=false
-    username: winner
-    password: lineplus!
+    url: jdbc:mysql://seose11.iptime.org:13306/test?autoReconnect=true&useSSL=false
+    username: root2
+    password: 1111
     hikari:
       auto-commit: true
       pool-name: hackathon
