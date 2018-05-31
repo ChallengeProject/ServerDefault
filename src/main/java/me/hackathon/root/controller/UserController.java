@@ -7,12 +7,15 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import me.hackathon.root.model.request.UserLoginRequest;
 import me.hackathon.root.model.request.UserRequest;
 import me.hackathon.root.model.supoort.ResultContainer;
 import me.hackathon.root.model.user.User;
+import me.hackathon.root.service.AmazonS3Service;
 import me.hackathon.root.service.UserService;
 import me.hackathon.root.support.Constant;
 
@@ -21,6 +24,9 @@ import me.hackathon.root.support.Constant;
 public class UserController {
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private AmazonS3Service amazonS3Service;
 
     @GetMapping("/getUserById")
     public User getUserById(Long id) {
@@ -53,4 +59,9 @@ public class UserController {
         return new ResultContainer<>(userService.login(userLoginRequest));
     }
 
+    @PostMapping("/upload")
+    public ResultContainer<String> upload(@RequestPart MultipartFile multipartFile) {
+
+        return new ResultContainer<>(amazonS3Service.uploadImage(multipartFile));
+    }
 }
