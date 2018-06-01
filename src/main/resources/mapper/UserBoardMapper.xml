@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="me.hackathon.root.repository.user.UserBoardMapper">
+      <sql id="UserBoardColumns">
+          user_board.id
+        , user_board.user_id
+        , user_board.board_id
+      </sql>
+
+  <insert id="insertUserBoard" parameterType="map">
+       INSERT INTO /* user_board.insertUserBoard */
+        user_board(user_id, board_id)
+        value(#{userId}, #{boardId})
+  </insert>
+
+</mapper>

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="me.hackathon.root.repository.board.BoardMapper">
+      <sql id="BoardColumns">
+          board.id
+        , board.user_id
+        , board.title
+        , board.vlt_duration_time
+        , board.vlt_time
+        , board.vlt_start_time
+        , board.vlt_end_time
+        ,	board.recruit_time
+        , board.person_count
+        , board.vlt_category
+        , board.vlt_type
+        , board.organization
+        , board.coin
+        , board.address
+        , board.content
+        , board.status
+      </sql>
+
+  <select id="selectBoardsAll" resultType="Board" parameterType="map">
+    SELECT
+      /* board.selectBoardAll */
+      <include refid="BoardColumns" />
+    FROM
+      board
+  </select>
+
+  <select id="selectBoardById" resultType="Board" parameterType="map">
+    SELECT
+    /* board.selectBoardAll */
+     <include refid="BoardColumns" />
+    FROM
+     board
+    WHERE
+      id = #{boardId}
+  </select>
+
+  <select id="selectBoardsByUserId" resultType="Board" parameterType="map">
+    SELECT
+    /* board.selectBoardsByUserId */
+    <include refid="BoardColumns" />
+    FROM
+      board
+    WHERE
+      user_id = #{userId}
+  </select>
+
+  <insert id="insertBoard" parameterType="map">
+       INSERT INTO /* board.insertBoard */
+        board(user_id, title, vlt_duration_time, vlt_time, vlt_start_time, vlt_end_time, recruit_time, person_count, vlt_category, vlt_type, organization, coin, address, content, status)
+        value(#{userId}, #{title}, #{vltDurationTime}, #{vltTime}, #{vltStartTime}, #{vltEndTime}, #{recruitTime}, #{personCount}, #{vltCategory}, #{vltType}, #{organization}, #{coin}, #{address}, #{content}, #{status})
+  </insert>
+
+  <update id="updateBoardStatusToEnd" parameterType="map">
+    UPDATE
+    /* board.updateBoardStatusToEnd */
+      board
+    SET
+      status = #{1}
+    WHERE
+     id = #{boardId}
+  </update>
+
+</mapper>

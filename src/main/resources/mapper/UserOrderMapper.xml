@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="me.hackathon.root.repository.user.UserOrderMapper">
+      <sql id="UserOrderColumns">
+          user_order.id
+        , user_order.user_id
+        , user_order.product_id
+        , user_order.count
+        , user_order.total_price
+        , user_order.status
+        , user_order.coin
+        , user_order.created_time
+      </sql>
+
+  <select id="selectUserOrderByUserId" parameterType="map" resultType="UserOrder">
+    SELECT
+    /* userOrder.selectUserOrderByUserId */
+       <include refid="UserOrderColumns" />
+    FROM
+        user_order
+    WHERE
+        user_id = #{userId}
+  </select>
+
+  <select id="selectUserOrderCountByProductIds" resultType="int" parameterType="map">
+    SELECT
+    /* userOrder.selectUserOrderCountByProductId */
+      count(*)
+    FROM
+      user_order
+    WHERE
+      product_id IN
+    <foreach collection="productIds" item="productId" separator="," open="(" close=")">
+      #{productId}
+    </foreach>
+    GROUP BY
+      product_id;
+  </select>
+
+  <select id="selectUserOrderCountByProductId" parameterType="map" resultType="int" >
+    SELECT
+      count(*)
+    FROM
+      user_order
+    WHERE
+      product_id = #{productId}
+  </select>
+
+  <insert id="insertUserOrder" parameterType="map">
+       INSERT INTO /* userOrder.insertUserOrder */
+        user_order(user_id, product_id, `count`, total_price, `status`, coin, created_time)
+        value(#{userId}, #{productId}, #{count}, #{totalPrice}, #{status}, #{coin}, NOW())
+  </insert>
+
+</mapper>

@@ -14,7 +14,18 @@ import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
+import me.hackathon.root.model.board.Board;
+import me.hackathon.root.model.board.BoardStatus;
+import me.hackathon.root.model.board.VLTCategoryType;
+import me.hackathon.root.model.comment.Comment;
+import me.hackathon.root.model.comment.CommentGrade;
+import me.hackathon.root.model.product.Product;
+import me.hackathon.root.model.product.ProductCategoryType;
 import me.hackathon.root.model.user.User;
+import me.hackathon.root.model.user.UserBoard;
+import me.hackathon.root.model.user.UserGrade;
+import me.hackathon.root.model.user.UserOrder;
+import me.hackathon.root.model.user.UserOrderStatus;
 import me.hackathon.root.model.user.UserStatus;
 import me.hackathon.root.support.typehandler.DateLongTypeHandler;
 import me.hackathon.root.support.typehandler.ValueEnumTypeHandler;
@@ -47,11 +58,22 @@ public class MybatisConfig {
         //typeAlias
         TypeAliasRegistry typeAliasRegistry = configuration.getTypeAliasRegistry();
         typeAliasRegistry.registerAlias("User", User.class);
+        typeAliasRegistry.registerAlias("Product", Product.class);
+        typeAliasRegistry.registerAlias("UserOrder", UserOrder.class);
+        typeAliasRegistry.registerAlias("Board", Board.class);
+        typeAliasRegistry.registerAlias("Comment", Comment.class);
+        typeAliasRegistry.registerAlias("UserBoard", UserBoard.class);
 
         //typeHandler
         TypeHandlerRegistry typeHandlerRegistry = configuration.getTypeHandlerRegistry();
         typeHandlerRegistry.register(DateLongTypeHandler.class);
         typeHandlerRegistry.register(UserStatus.class, ValueEnumTypeHandler.class);
+        typeHandlerRegistry.register(UserGrade.class, ValueEnumTypeHandler.class);
+        typeHandlerRegistry.register(UserOrderStatus.class, ValueEnumTypeHandler.class);
+        typeHandlerRegistry.register(ProductCategoryType.class, ValueEnumTypeHandler.class);
+        typeHandlerRegistry.register(BoardStatus.class, ValueEnumTypeHandler.class);
+        typeHandlerRegistry.register(VLTCategoryType.class, ValueEnumTypeHandler.class);
+        typeHandlerRegistry.register(CommentGrade.class, ValueEnumTypeHandler.class);
 //        typeHandlerRegistry.register(OptionData.class, OptionDataTypeHandler.class);
 
         return configuration;

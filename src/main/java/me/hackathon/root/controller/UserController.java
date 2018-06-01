@@ -4,6 +4,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,11 +13,10 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import me.hackathon.root.model.request.UserLoginRequest;
-import me.hackathon.root.model.request.UserRequest;
 import me.hackathon.root.model.supoort.ResultContainer;
 import me.hackathon.root.model.user.User;
 import me.hackathon.root.service.AmazonS3Service;
-import me.hackathon.root.service.UserService;
+import me.hackathon.root.service.user.UserService;
 import me.hackathon.root.support.Constant;
 
 @RestController
@@ -28,20 +28,21 @@ public class UserController {
     @Autowired
     private AmazonS3Service amazonS3Service;
 
-    @GetMapping("/getUserById")
-    public User getUserById(Long id) {
-        return userService.getUserById(id);
+    @GetMapping("/myPage/{userId}")
+    public User getUserById(@PathVariable("userId") int userId) {
+        return userService.getUserById(userId);
     }
 
-    @PostMapping("/insertUser")
-    public ResultContainer<Void> insertUser(@RequestBody UserRequest user) {
+
+    @PostMapping("/join")
+    public ResultContainer<Void> insertUser(@RequestBody User user) {
         userService.insertUser(user);
 
         return new ResultContainer<>();
     }
 
     @PostMapping("/updateUserById")
-    public ResultContainer<Void> updateUserById(@RequestBody UserRequest user) {
+    public ResultContainer<Void> updateUserById(@RequestBody User user) {
         userService.updateUserById(user);
 
         return new ResultContainer<>();

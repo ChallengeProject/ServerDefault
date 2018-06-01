@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="me.hackathon.root.repository.product.ProductMapper">
+      <sql id="ProductColumns">
+          product.id
+        , product.content
+        , product.category
+        , product.title
+        , product.thumbnail
+        , product.user_id
+        ,	product.address
+        , product.price
+      </sql>
+
+  <select id="selectProductByProductId" parameterType="map" resultType="Product">
+    SELECT
+    /* product.selectProductByProductId */
+       <include refid="ProductColumns" />
+    FROM
+        product
+    WHERE
+        id = #{productId}
+  </select>
+
+  <select id="selectProductListAll" parameterType="map" resultType="Product">
+    SELECT
+    /* product.selectProductListAll */
+    <include refid="ProductColumns" />
+    FROM
+      product
+  </select>
+
+  <select id="selectProductListByUserId" parameterType="map" resultType="Product">
+    SELECT
+    /* product.selectProductListAll */
+    <include refid="ProductColumns" />
+    FROM
+      product
+    WHERE
+      user_id = #{userId}
+  </select>
+
+  <select id="selectProductListByIds" resultType="Product" parameterType="map">
+    SELECT
+      /* product.selectProductListByIds */
+      <include refid="ProductColumns" />
+    FROM
+      product
+    WHERE
+      id IN
+    <foreach collection="productIds" item="productId" separator="," open="(" close=")">
+      #{productId}
+    </foreach>
+  </select>
+
+  <insert id="insertProduct" parameterType="map">
+       INSERT INTO /* product.insertProduct */
+        product(content, category, title, thumbnail, user_id, address, price)
+        value(#{content}, #{category}, #{title}, #{thumbnail}, #{userId}, #{address}, #{price})
+  </insert>
+
+</mapper>

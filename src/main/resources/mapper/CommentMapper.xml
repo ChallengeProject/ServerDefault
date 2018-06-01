@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="me.hackathon.root.repository.comment.CommentMapper">
+      <sql id="CommentColumns">
+          comment.id
+        , comment.user_id
+        , comment.created_time
+        , comment.content
+        , comment.grade
+        , comment.product_id
+      </sql>
+
+  <select id="selectCommentsByProductId" parameterType="map" resultType="Comment">
+    SELECT
+    /* comment.selectProductByProductId */
+       <include refid="CommentColumns" />
+    FROM
+        comment
+    WHERE
+        product_id = #{productId}
+  </select>
+
+  <insert id="insertComment" parameterType="map">
+       INSERT INTO /* comment.insertComment */
+        comment(user_id, created_time, content, grade, product_id)
+        value(#{userId}, NOW(), #{content}, #{grade}, #{productId})
+  </insert>
+
+</mapper>

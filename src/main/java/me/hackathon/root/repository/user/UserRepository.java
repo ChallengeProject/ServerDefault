@@ -1,4 +1,7 @@
-package me.hackathon.root.repository;
+package me.hackathon.root.repository.user;
+
+import java.util.Collection;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -33,5 +36,9 @@ public class UserRepository {
 
     public User login(UserLoginRequest userLoginRequest) {
         return userMapper.login(userLoginRequest);
+    }
+
+    public List<User> selectUserListByIds(Collection<Integer> ids) {
+        return userMapper.selectUserListByIds(ids);
     }
 }

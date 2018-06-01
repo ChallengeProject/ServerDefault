@@ -1,14 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="me.hackathon.root.repository.UserMapper">
+<mapper namespace="me.hackathon.root.repository.user.UserMapper">
       <sql id="UserColumns">
           user.id
+        , user.grade
         , user.email
+        , user.phone_number
+        , user.name
+        , user.address
         ,	user.status
-        ,	user.created_time
-        ,	user.updated_time
-        ,	user.deleted_time
+        , user.created_time
+        , user.birth
+        , user.coin
+        , user.profile_url
+        , user.vlt_time
       </sql>
 
   <select id="selectUserById" parameterType="map" resultType="User">
@@ -42,10 +48,23 @@
       AND password = #{password}
   </select>
 
+  <select id="selectUserListByIds" resultType="User" parameterType="map">
+    SELECT
+    /* user.selectUserListByIds */
+      <include refid="UserColumns" />
+    FROM
+      user
+    WHERE
+      id IN
+      <foreach collection="userIds" item="userId" separator="," open="(" close=")">
+        #{userId}
+      </foreach>
+  </select>
+
   <insert id="insertUser" parameterType="map">
        INSERT INTO /* user.insertUser */
-        user(id, email, password, status, created_time, updated_time)
-        value(#{id}, #{email}, #{password}, #{status}, NOW(), NOW())
+        user(grade, email, password, phone_number, `name`, address, status, created_time, birth, coin, profile_url, vlt_time)
+        value(#{grade}, #{email}, #{password}, #{phoneNumber}, #{name}, #{address}, #{status}, NOW(), #{birth}, #{coin}, #{profileUrl}, #{vltTime})
   </insert>
 
   <update id="updateUserById" parameterType="map">
@@ -53,7 +72,6 @@
         user
       SET
         , status = #{status}
-        , updated_time = NOW()
       WHERE
         id = #{id}
     </update>
@@ -63,8 +81,6 @@
         user
       SET
         status = 1
-        , updated_time = NOW()
-        , deleted_time = NOW()
       WHERE
         id = #{id}
     </update>

@@ -1,7 +1,7 @@
 spring:
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://seose11.iptime.org:13306/test?autoReconnect=true&useSSL=false
+    url: jdbc:mysql://seose11.iptime.org:13306/hackathon?autoReconnect=true&useSSL=false
     username: root2
     password: 1111
     hikari:
