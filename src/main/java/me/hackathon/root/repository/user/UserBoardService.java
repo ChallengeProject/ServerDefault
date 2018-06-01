@@ -26,14 +26,14 @@ public class UserBoardService {
 
         return BoardDocumentView.builder()
                                 .user(userService.getUserById(userId))
-                                .board(boardService.getBoardById(boardId))
+                                .board(boardService.getBoardDetailById(boardId))
                                 .build();
     }
 
     public BoardResultView getBoardResultView(int userId, int boardId) {
         return BoardResultView.builder()
                               .user(userService.getUserById(userId))
-                              .board(boardService.getBoardById(boardId))
+                              .board(boardService.getBoardDetailById(boardId))
                               .build();
     }
 }

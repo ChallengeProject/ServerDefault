@@ -60,7 +60,7 @@
     /* board.updateBoardStatusToEnd */
       board
     SET
-      status = #{1}
+      status = 1
     WHERE
      id = #{boardId}
   </update>

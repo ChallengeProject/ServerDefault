@@ -31,7 +31,7 @@ public class BoardService {
         boardRepository.insertBoard(board);
     }
 
-    public Board getBoardById(int boardId) {
+    public Board getBoardDetailById(int boardId) {
         return boardRepository.selectBoardById(boardId);
     }
 

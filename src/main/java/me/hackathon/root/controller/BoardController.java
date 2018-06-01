@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import me.hackathon.root.model.board.Board;
 import me.hackathon.root.model.response.BoardDocumentView;
 import me.hackathon.root.model.response.BoardMainView;
+import me.hackathon.root.model.response.BoardRequest;
 import me.hackathon.root.model.response.BoardResultView;
 import me.hackathon.root.model.response.BoardView;
 import me.hackathon.root.model.supoort.ExceptionCode;
@@ -36,13 +37,13 @@ public class BoardController {
         return new ResultContainer<>(boardService.getBoardMainView());
     }
 
-    @GetMapping("/{boardId}")
-    public ResultContainer<Board> getBoardById(@PathVariable("boardId") Integer boardId) {
-        return new ResultContainer<>(boardService.getBoardById(boardId));
+    @GetMapping("/detail/{boardId}")
+    public ResultContainer<Board> getBoardDetailById(@PathVariable("boardId") int boardId) {
+        return new ResultContainer<>(boardService.getBoardDetailById(boardId));
     }
 
     @GetMapping("/{userId}")
-    public ResultContainer<BoardView> getBoardByUserId(@PathVariable("userId") Integer userId) {
+    public ResultContainer<BoardView> getBoardByUserId(@PathVariable("userId") int userId) {
         return new ResultContainer<>(boardService.getBoardView(userId));
     }
 
@@ -71,9 +72,9 @@ public class BoardController {
     }
 
     @PostMapping("/end")
-    public ResultContainer<Void> endBoard(@RequestBody Integer boardId) {
+    public ResultContainer<Void> endBoard(@RequestBody BoardRequest boardId) {
         ResultContainer<Void> resultContainer = new ResultContainer<>();
-        if (boardService.updateBoardStatusToEnd(boardId) != 1) {
+        if (boardService.updateBoardStatusToEnd(boardId.getBoardId()) != 1) {
             resultContainer.setCode(ExceptionCode.INTERNAL_SERVER_ERROR);
         }
         return resultContainer;

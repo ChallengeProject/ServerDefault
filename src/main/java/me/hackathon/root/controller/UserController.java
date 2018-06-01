@@ -29,8 +29,8 @@ public class UserController {
     private AmazonS3Service amazonS3Service;
 
     @GetMapping("/myPage/{userId}")
-    public User getUserById(@PathVariable("userId") int userId) {
-        return userService.getUserById(userId);
+    public ResultContainer<User> getUserById(@PathVariable("userId") int userId) {
+        return new ResultContainer<>(userService.getUserById(userId));
     }
 
 
