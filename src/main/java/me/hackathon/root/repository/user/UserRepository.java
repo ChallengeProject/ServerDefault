@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import me.hackathon.root.model.request.UserLoginRequest;
 import me.hackathon.root.model.user.User;
+import me.hackathon.root.model.user.UserGrade;
 
 @Repository
 public class UserRepository {
@@ -40,5 +41,13 @@ public class UserRepository {
 
     public List<User> selectUserListByIds(Collection<Integer> ids) {
         return userMapper.selectUserListByIds(ids);
+    }
+
+    public void uploadUserProfile(String profileUrl, int userId) {
+        userMapper.uploadUserProfile(profileUrl, userId);
+    }
+
+    public int updateUserGrade(UserGrade userGrade, int userId) {
+        return userMapper.updateUserGrade(userGrade, userId);
     }
 }

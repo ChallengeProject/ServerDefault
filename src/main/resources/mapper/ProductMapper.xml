@@ -60,4 +60,13 @@
         value(#{content}, #{category}, #{title}, #{thumbnail}, #{userId}, #{address}, #{price})
   </insert>
 
+  <update id="uploadThumbnail" parameterType="map">
+    UPDATE
+      product
+    SET
+      thumbnail = #{thumbnail}
+    WHERE
+      id = #{productId}
+  </update>
+
 </mapper>

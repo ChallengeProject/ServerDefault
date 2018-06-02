@@ -1,4 +1,4 @@
-package me.hackathon.root.model.response;
+package me.hackathon.root.model.response.board;
 
 import java.util.List;
 
@@ -8,6 +8,6 @@ import me.hackathon.root.model.board.Board;
 
 @Data
 @Builder
-public class BoardView {
+public class BoardMainView {
     List<Board> boards;
 }

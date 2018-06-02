@@ -1,4 +1,4 @@
-package me.hackathon.root.model.response;
+package me.hackathon.root.model.response.user;
 
 import lombok.Builder;
 import lombok.Data;

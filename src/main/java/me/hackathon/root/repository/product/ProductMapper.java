@@ -20,4 +20,6 @@ public interface ProductMapper {
 
     List<Product> selectProductListByIds(@Param("productIds") Collection<Integer> productIds);
 
+    void uploadThumbnail(@Param("thumbnail") String thumbnail, @Param("productId") int productId);
+
 }

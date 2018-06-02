@@ -6,8 +6,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import me.hackathon.root.model.response.UserOrderBuysView;
-import me.hackathon.root.model.response.UserOrderSellsView;
+import me.hackathon.root.model.response.user.UserOrderBuysView;
+import me.hackathon.root.model.response.user.UserOrderSellsView;
 import me.hackathon.root.model.supoort.ResultContainer;
 import me.hackathon.root.service.user.UserOrderService;
 import me.hackathon.root.support.Constant;

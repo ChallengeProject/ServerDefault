@@ -98,6 +98,9 @@ public class AmazonS3Service {
         thumbnailRequest.setExpiration(expiration);
         thumbnailURL = amazonS3.generatePresignedUrl(thumbnailRequest);
 
-        return thumbnailURL.toString();
+        int httpsStartIndex = thumbnailURL.toString().indexOf("https");
+        String url = thumbnailURL.toString().substring(httpsStartIndex+5, thumbnailURL.toString().length());
+        url = "http" + url;
+        return url;
     }
 }

@@ -11,16 +11,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import me.hackathon.root.model.board.Board;
-import me.hackathon.root.model.response.BoardDocumentView;
-import me.hackathon.root.model.response.BoardMainView;
-import me.hackathon.root.model.response.BoardRequest;
-import me.hackathon.root.model.response.BoardResultView;
-import me.hackathon.root.model.response.BoardView;
+import me.hackathon.root.model.response.board.BoardDocumentView;
+import me.hackathon.root.model.response.board.BoardMainView;
+import me.hackathon.root.model.response.board.BoardRequest;
+import me.hackathon.root.model.response.board.BoardResultView;
+import me.hackathon.root.model.response.board.BoardView;
 import me.hackathon.root.model.supoort.ExceptionCode;
 import me.hackathon.root.model.supoort.ResultContainer;
 import me.hackathon.root.model.user.UserBoard;
-import me.hackathon.root.repository.user.UserBoardService;
 import me.hackathon.root.service.board.BoardService;
+import me.hackathon.root.service.user.UserBoardService;
 import me.hackathon.root.support.Constant;
 
 @RestController
@@ -72,9 +72,9 @@ public class BoardController {
     }
 
     @PostMapping("/end")
-    public ResultContainer<Void> endBoard(@RequestBody BoardRequest boardId) {
+    public ResultContainer<Void> endBoard(@RequestBody BoardRequest boardRequest) {
         ResultContainer<Void> resultContainer = new ResultContainer<>();
-        if (boardService.updateBoardStatusToEnd(boardId.getBoardId()) != 1) {
+        if (boardService.updateBoardStatusToEnd(boardRequest) != 1) {
             resultContainer.setCode(ExceptionCode.INTERNAL_SERVER_ERROR);
         }
         return resultContainer;

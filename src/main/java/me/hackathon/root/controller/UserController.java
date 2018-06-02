@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import me.hackathon.root.model.request.UserLoginRequest;
+import me.hackathon.root.model.supoort.ExceptionCode;
 import me.hackathon.root.model.supoort.ResultContainer;
 import me.hackathon.root.model.user.User;
 import me.hackathon.root.service.AmazonS3Service;
@@ -30,7 +31,18 @@ public class UserController {
 
     @GetMapping("/myPage/{userId}")
     public ResultContainer<User> getUserById(@PathVariable("userId") int userId) {
-        return new ResultContainer<>(userService.getUserById(userId));
+        return new ResultContainer<>(userService.getUserAndCoinById(userId));
+    }
+
+    @GetMapping("/find/{email}")
+    public ResultContainer<Void> findUserByEmail(@PathVariable("email") String email) {
+        ResultContainer<Void> resultContainer = new ResultContainer<>();
+
+        if (userService.findUserByEmail(email)) {
+            resultContainer.setCode(ExceptionCode.USER_ALREADY_EXISTS);
+        }
+
+        return resultContainer;
     }
 
 

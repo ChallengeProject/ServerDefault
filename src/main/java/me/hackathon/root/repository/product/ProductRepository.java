@@ -32,4 +32,8 @@ public class ProductRepository {
     public List<Product> selectProductListByIds(Collection<Integer> ids) {
         return productMapper.selectProductListByIds(ids);
     }
+
+    public void uploadThumbnail(String thumbnail, int productId) {
+        productMapper.uploadThumbnail(thumbnail, productId);
+    }
 }

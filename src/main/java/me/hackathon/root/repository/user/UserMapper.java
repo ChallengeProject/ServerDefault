@@ -8,6 +8,7 @@ import org.apache.ibatis.annotations.Param;
 
 import me.hackathon.root.model.request.UserLoginRequest;
 import me.hackathon.root.model.user.User;
+import me.hackathon.root.model.user.UserGrade;
 
 @Mapper
 public interface UserMapper {
@@ -25,4 +26,8 @@ public interface UserMapper {
     List<User> selectUserListByIds(@Param("userIds") Collection<Integer> userIds);
 
     User login(UserLoginRequest userLoginRequest);
+
+    int uploadUserProfile(@Param("profileUrl") String profileUrl, @Param("userId") int userId);
+
+    int updateUserGrade(@Param("userGrade")UserGrade userGrade, @Param("userId") int userId);
 }

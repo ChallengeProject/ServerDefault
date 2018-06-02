@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="me.hackathon.root.repository.user.UserMapper">
-      <sql id="UserColumns">
+  <sql id="UserColumns">
           user.id
         , user.grade
         , user.email
@@ -12,7 +12,6 @@
         ,	user.status
         , user.created_time
         , user.birth
-        , user.coin
         , user.profile_url
         , user.vlt_time
       </sql>
@@ -20,11 +19,11 @@
   <select id="selectUserById" parameterType="map" resultType="User">
     SELECT
     /* user.selectUserById */
-       <include refid="UserColumns" />
+    <include refid="UserColumns" />
     FROM
-        user
+    user
     WHERE
-        id = #{id}
+    id = #{id}
   </select>
 
   <select id="selectUserByEmail" parameterType="map" resultType="int">
@@ -40,41 +39,59 @@
   <select id="login" resultType="User" parameterType="map">
     SELECT
     /* user.login */
-      <include refid="UserColumns" />
+    <include refid="UserColumns" />
     FROM
-      user
+    user
     WHERE
-      email = #{email}
-      AND password = #{password}
+    email = #{email}
+    AND password = #{password}
   </select>
 
   <select id="selectUserListByIds" resultType="User" parameterType="map">
     SELECT
     /* user.selectUserListByIds */
-      <include refid="UserColumns" />
+    <include refid="UserColumns" />
     FROM
-      user
+    user
     WHERE
-      id IN
-      <foreach collection="userIds" item="userId" separator="," open="(" close=")">
-        #{userId}
-      </foreach>
+    id IN
+    <foreach collection="userIds" item="userId" separator="," open="(" close=")">
+      #{userId}
+    </foreach>
   </select>
 
   <insert id="insertUser" parameterType="map">
        INSERT INTO /* user.insertUser */
-        user(grade, email, password, phone_number, `name`, address, status, created_time, birth, coin, profile_url, vlt_time)
-        value(#{grade}, #{email}, #{password}, #{phoneNumber}, #{name}, #{address}, #{status}, NOW(), #{birth}, #{coin}, #{profileUrl}, #{vltTime})
+        user(grade, email, password, phone_number, `name`, address, status, created_time, birth, profile_url, vlt_time)
+        value(#{grade}, #{email}, #{password}, #{phoneNumber}, #{name}, #{address}, #{status}, NOW(), #{birth}, #{profileUrl}, #{vltTime})
   </insert>
 
   <update id="updateUserById" parameterType="map">
       UPDATE /* user.updateUserById */
         user
       SET
-        , status = #{status}
+        status = #{status}
       WHERE
         id = #{id}
     </update>
+
+  <update id="uploadUserProfile" parameterType="map">
+    UPDATE /* user.uploadUserProfile */
+      user
+    SET
+      profile_url = #{profileUrl};
+    WHERE
+      id = #{userId}
+  </update>
+
+  <update id="updateUserGrade" parameterType="map">
+    UPDATE /* user.updateUserGrade */
+      user
+    SET
+      grade = #{userGrade}
+    WHERE
+      id = #{userId}
+  </update>
 
   <update id="deleteUserById" parameterType="map">
       UPDATE /* user.deleteUserById */

@@ -8,6 +8,24 @@
         , user_board.board_id
       </sql>
 
+  <select id="selectUserBoardsByBoardId" parameterType="map" resultType="int">
+    SELECT  /* user_board.selectUserBoardsByBoardId */
+      user_id
+    FROM
+      user_board
+    WHERE
+      boardId = #{boardId}
+  </select>
+
+  <select id="selectUserBoardsByUserId" resultType="UserBoard" parameterType="map">
+    SELECT
+    <include refid="UserBoardColumns" />
+    FROM
+      user_board
+    WHERE
+      user_id = #{userId}
+  </select>
+
   <insert id="insertUserBoard" parameterType="map">
        INSERT INTO /* user_board.insertUserBoard */
         user_board(user_id, board_id)

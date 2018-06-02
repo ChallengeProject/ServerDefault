@@ -1,5 +1,7 @@
 package me.hackathon.root.repository.user;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -13,4 +15,13 @@ public class UserBoardRepository {
     public void insertUserBoard(UserBoard userBoard) {
         userBoardMapper.insertUserBoard(userBoard);
     }
+
+    public List<Integer> selectUserBoardsByBoardId(int boardId) {
+        return userBoardMapper.selectUserBoardsByBoardId(boardId);
+    }
+
+    public List<UserBoard> selectUserBoardsByUserId(int userId) {
+        return userBoardMapper.selectUserBoardsByUserId(userId);
+    }
+
 }

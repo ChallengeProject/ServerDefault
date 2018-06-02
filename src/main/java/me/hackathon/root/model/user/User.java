@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class User implements UserPrincipal{
+public class User {
     private Long id;
     private UserGrade grade;
     private String email;
