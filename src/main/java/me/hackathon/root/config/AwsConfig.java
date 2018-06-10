@@ -14,8 +14,8 @@ import com.amazonaws.services.s3.AmazonS3ClientBuilder;
 
 @Configuration
 public class AwsConfig {
-    private String accessKey = "AKIAI7VBNUOJGTJ47BJQ";
-    private String secretKey = "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";
+    private String accessKey = "";
+    private String secretKey = "";
 
     @Bean
     public AmazonS3 amazonS3() {
