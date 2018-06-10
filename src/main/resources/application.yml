@@ -1,9 +1,9 @@
 spring:
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
-    url:
-    username: 
-    password: 
+    url: jdbc:mysql://localhost:3306/test?zeroDateTimeBehavior=convertToNull&tinyInt1isBit=false&useUnicode=true&characterEncoding=utf8&mysqlEncoding=utf8&connectTimeout=5000&socketTimeout=5000&useServerPrepStmts=true&cachePrepStmts=true&useSSL=false
+    username: root
+    password: 1234
     hikari:
       auto-commit: true
       pool-name: hackathon
