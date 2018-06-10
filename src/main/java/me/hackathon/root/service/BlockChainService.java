@@ -91,7 +91,7 @@ public class BlockChainService {
         HttpEntity<QueryAmountRequest> entity = new HttpEntity<>(queryAmountRequest, httpHeaders);
         ResponseEntity<QueryAmountResponse> queryAmountResponse = restTemplate.exchange(url, HttpMethod.POST, entity, QueryAmountResponse.class);
         if (queryAmountResponse.getStatusCode() == HttpStatus.OK) {
-            if (queryAmountResponse.getBody().getResponse().getResult().getData() == null) {
+            if (queryAmountResponse.getBody().getResponse().getResult() == null) {
                 throw new IllegalArgumentException("계정이 없습니다.");
             }
         }

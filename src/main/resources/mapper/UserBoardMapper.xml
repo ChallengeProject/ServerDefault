@@ -14,7 +14,7 @@
     FROM
       user_board
     WHERE
-      boardId = #{boardId}
+      board_id = #{boardId}
   </select>
 
   <select id="selectUserBoardsByUserId" resultType="UserBoard" parameterType="map">

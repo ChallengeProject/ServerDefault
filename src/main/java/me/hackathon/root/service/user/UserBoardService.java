@@ -1,10 +1,12 @@
 package me.hackathon.root.service.user;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import me.hackathon.root.model.board.Board;
 import me.hackathon.root.model.response.board.BoardDocumentView;
 import me.hackathon.root.model.response.board.BoardResultView;
 import me.hackathon.root.model.user.UserBoard;
@@ -45,5 +47,15 @@ public class UserBoardService {
 
     public List<UserBoard> getUserBoardsByUserId(int userId) {
         return userBoardRepository.selectUserBoardsByUserId(userId);
+    }
+
+    public List<Board> getJoinBoardByUserId(int userId) {
+        List<UserBoard> userBoards = userBoardRepository.selectUserBoardsByUserId(userId);
+        List<Board> boards = new ArrayList<>();
+        for(UserBoard userBoard : userBoards) {
+            boards.add(boardService.getBoardDetailById(userBoard.getBoardId()));
+        }
+
+        return boards;
     }
 }

@@ -44,7 +44,7 @@ public class BlockChainTest {
 
     @PostMapping("/queryAmount")
     public ResultContainer<Integer> queryAmount(@RequestBody QueryAmountRequest queryAmountRequest) {
-
+        queryAmountRequest.getParams().setUid(SecurityUtils.encryptMD5AndSHA256(queryAmountRequest.getParams().getUid()));
         return new ResultContainer<>(blockChainService.queryAmount(queryAmountRequest));
     }
 
