@@ -54,6 +54,7 @@ public class MybatisConfig {
         typeHandlerRegistry.register(UserStatus.class, ValueEnumTypeHandler.class);
 //        typeHandlerRegistry.register(OptionData.class, OptionDataTypeHandler.class);
 
+
         return configuration;
     }
 }
